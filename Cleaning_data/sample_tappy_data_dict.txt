@@ -1,0 +1,7 @@
+('3HYXJCTCN', '170'): 
+    {
+    'mean_flight_time': 74.96070150322139, 
+    'mean_latency_time': 223.57093772369328, 
+    'mean_hold_time': 176.9943450250531
+    }
+x
