@@ -15,7 +15,7 @@ class PreprocessedData():
         
     # Create a dictionry of all patient data
     def create_patient_dict(self):
-        archived_users = os.listdir('../Archived users')
+        archived_users = os.listdir('./Archived users')
         all_patients_demographic_data = {}
 
         for i in archived_users:
@@ -26,15 +26,15 @@ class PreprocessedData():
     # Create a dictionary of all tappy data
     def create_tappy_dict(self):
         all_patient_tappy_data = {}
-        tappy_data = os.listdir('../Tappy Data')
+        tappy_data = os.listdir('./Tappy Data')
 
         for i in tappy_data:
-            all_patient_tappy_data[tuple([i[0:9],i[11:14]])] = self.clean_tappy_data(i)
+            all_patient_tappy_data[tuple([i[0:10],i[12:16]])] = self.clean_tappy_data(i)
         
         return all_patient_tappy_data
 
     def clean_demographic_data(self, file_name):
-        first= open('../Archived users/' + file_name, 'r')
+        first= open('./Archived users/' + file_name, 'r')
         lines = first.readlines()
         dictionary = {}
         for i in lines:
@@ -50,7 +50,7 @@ class PreprocessedData():
         return dictionary
 
     def clean_tappy_data(self, file_name):
-        second= open('../Tappy Data/' + file_name)
+        second= open('./Tappy Data/' + file_name)
         lines = second.readlines()
 
         dictionary = {}
