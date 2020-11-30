@@ -21,15 +21,16 @@ def parkinsons_and_mean_hold_time():
             else:
                 y.append(0)
         
-            x.append(tappy_data[i]['mean_flight_time'])
-    print(x)
-    print(y)
+            # x.append(tappy_data[i]['mean_flight_time'])
+            print(tappy_data[i].keys())
 
 
 
-def find_linear_regressions():
+# def find_linear_regressions():
     
 
+
+parkinsons_and_mean_hold_time()
 
 
 # Calculate the mean squared error to determine the effectivness of
