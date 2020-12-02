@@ -242,11 +242,29 @@ class CreateKerasClassifier():
 
     def __init__(self):
         self.processed_data = PreprocessedData()
-        self.patient_data = processed_data.get_patient_data()
-        self.tappy_data = processed_data.get_tappy_data()
+        self.patient_data = self.processed_data.get_patient_data()
+        self.tappy_data = self.processed_data.get_tappy_data()
 
 
-    def model_with_deep_learning(self, X, Y):
+    def model_with_deep_learning(self):
+
+        x1_x2_x3 = []
+        y1_y2_y3 = []
+
+        for i in self.tappy_data:
+
+            if i[0] in self.patient_data and 'mean_latency_time' in self.tappy_data[i] and 'mean_hold_time' in self.tappy_data[i] and 'mean_flight_time' in self.tappy_data[i]: 
+
+                if self.patient_data[i[0]]['Parkinsons:'] == 'True':
+                    y1_y2_y3.append(1)
+                else:
+                    y1_y2_y3.append(0)
+
+                x1_x2_x3.append([self.tappy_data[i]['mean_latency_time'],self.tappy_data[i]['mean_hold_time'], self.tappy_data[i]['mean_flight_time']])
+
+
+        X = numpy.array(x1_x2_x3)
+        Y = numpy.array(y1_y2_y3)
 
         #make a seed to be used for the model 
         seed = 6
@@ -284,6 +302,8 @@ class CreateKerasClassifier():
         grid_results = grid.fit(X, Y)
 
         # return the best model
+        print(grid_results.best_score_)
+        print(grid_results.best_params_)
         return [grid_results.best_score_, grid_results.best_params_]
 
 
@@ -303,7 +323,7 @@ class CreateKerasClassifier():
 
 
 
-models = CreateLinearRegressionModels().create_multiple_regressions()
+models = CreateKerasClassifier().model_with_deep_learning()
 
 
 
